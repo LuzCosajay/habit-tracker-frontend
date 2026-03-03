@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Habit Tracker - Frontend (Semana 2)
 
-## Getting Started
+Aplicación web desarrollada en Next.js con integración de Redux Toolkit, como parte del curso de Programación Avanzada.
 
-First, run the development server:
+Este proyecto corresponde a la entrega de la Semana 2 e incluye la configuración inicial de Next.js, la integración de Redux para manejo de estado global y la conexión mediante request GET al backend desarrollado en Express.js.
 
-```bash
+------------------------------------------------------------
+
+TECNOLOGÍAS UTILIZADAS
+
+- Next.js
+- React
+- Redux Toolkit
+- React Redux
+- JavaScript
+- CSS
+
+------------------------------------------------------------
+
+REQUISITOS PREVIOS
+
+Antes de ejecutar este proyecto es necesario:
+
+- Tener Node.js instalado.
+- Tener el backend ejecutándose en:
+  http://localhost:3001
+
+El frontend consume el endpoint:
+http://localhost:3001/habits
+
+------------------------------------------------------------
+
+INSTALACIÓN
+
+1. Clonar el repositorio:
+
+git clone https://github.com/LuzCosajay/habit-tracker-frontend.git
+
+2. Entrar a la carpeta del proyecto:
+
+cd habit-tracker-frontend
+
+3. Instalar dependencias:
+
+npm install
+
+------------------------------------------------------------
+
+EJECUCIÓN
+
+Para iniciar el servidor de desarrollo:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir en el navegador:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+------------------------------------------------------------
 
-## Learn More
+FUNCIONALIDAD IMPLEMENTADA EN SEMANA 2
 
-To learn more about Next.js, take a look at the following resources:
+- Configuración inicial del proyecto en Next.js.
+- Integración de Redux Toolkit.
+- Creación de store global.
+- Implementación de createAsyncThunk para obtener hábitos.
+- Integración de request GET al backend.
+- Renderizado de datos desde el estado global (Redux).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+------------------------------------------------------------
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ESTRUCTURA PRINCIPAL
 
-## Deploy on Vercel
+src/
+  app/
+    layout.js
+    page.js
+  store/
+    store.js
+    habitsSlice.js
+    Providers.js
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+------------------------------------------------------------
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NOTAS IMPORTANTES
+
+- El backend debe estar ejecutándose en el puerto 3001.
+- La base de datos utilizada es MongoDB Atlas.
+- Este branch corresponde a la entrega de la Semana 2.
