@@ -20,7 +20,7 @@ export default function Home() {
 
   const fetchHabits = async (authToken) => {
     try {
-      const res = await fetch("http://localhost:3001/habits", {
+      const res = await fetch("https://habit-tracker-backend-two.vercel.app", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -50,7 +50,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3001/auth/register", {
+      const res = await fetch("https://habit-tracker-backend-two.vercel.app", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3001/auth/login", {
+      const res = await fetch("https://habit-tracker-backend-two.vercel.app", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +96,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3001/habits", {
+      const res = await fetch("https://habit-tracker-backend-two.vercel.app", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,7 +120,7 @@ export default function Home() {
 
   const handleDone = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3001/habits/${id}/done`, {
+      const res = await fetch(`https://habit-tracker-backend-two.vercel.app/${id}/done`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

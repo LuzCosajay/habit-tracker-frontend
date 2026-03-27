@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// ✅ Thunk: traer hábitos desde el backend
+// Thunk: traer hábitos desde el backend
 export const fetchHabits = createAsyncThunk("habits/fetchHabits", async () => {
-  const res = await fetch("http://localhost:3001/habits");
+  const res = await fetch("https://habit-tracker-backend-two.vercel.app");
   if (!res.ok) throw new Error("Error obteniendo hábitos");
   return await res.json();
 });
