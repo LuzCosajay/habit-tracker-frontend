@@ -18,13 +18,23 @@ export default function Home() {
     password: "",
   });
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setHabits([]);
+    setMessage("Sesión cerrada");
+  };
+
   const fetchHabits = async (authToken) => {
     try {
-      const res = await fetch("https://habit-tracker-backend-two.vercel.app/habits", {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const res = await fetch(
+        "https://habit-tracker-backend-two.vercel.app/api/habits",
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
 
       const data = await res.json();
 
@@ -50,13 +60,16 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://habit-tracker-backend-two.vercel.app/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerData),
-      });
+      const res = await fetch(
+        "https://habit-tracker-backend-two.vercel.app/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registerData),
+        }
+      );
 
       const data = await res.json();
       setMessage(data.message || "Registro completado");
@@ -69,13 +82,16 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://habit-tracker-backend-two.vercel.app/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
+      const res = await fetch(
+        "https://habit-tracker-backend-two.vercel.app/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        }
+      );
 
       const data = await res.json();
 
@@ -96,14 +112,17 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://habit-tracker-backend-two.vercel.app/habits", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ name: habitName }),
-      });
+      const res = await fetch(
+        "https://habit-tracker-backend-two.vercel.app/api/habits",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ name: habitName }),
+        }
+      );
 
       const data = await res.json();
 
@@ -121,7 +140,7 @@ export default function Home() {
   const handleDone = async (id) => {
     try {
       const res = await fetch(
-        `https://habit-tracker-backend-two.vercel.app/habits/${id}/done`,
+        `https://habit-tracker-backend-two.vercel.app/api/habits/${id}/done`,
         {
           method: "PUT",
           headers: {
@@ -145,15 +164,22 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-100 p-8">
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow">
-        <h1 className="mb-6 text-3xl font-bold text-slate-800">Habit Tracker</h1>
+        <h1 className="mb-6 text-3xl font-bold text-slate-800">
+          Habit Tracker
+        </h1>
 
         {message && (
-          <p className="mb-4 rounded bg-slate-100 p-3 text-slate-700">{message}</p>
+          <p className="mb-4 rounded bg-slate-100 p-3 text-slate-700">
+            {message}
+          </p>
         )}
 
         {!token ? (
           <div className="grid gap-6 md:grid-cols-2">
-            <form onSubmit={handleRegister} className="space-y-3 rounded-xl border p-4">
+            <form
+              onSubmit={handleRegister}
+              className="space-y-3 rounded-xl border p-4"
+            >
               <h2 className="text-xl font-semibold">Registro</h2>
 
               <input
@@ -162,7 +188,10 @@ export default function Home() {
                 className="w-full rounded border p-2"
                 value={registerData.name}
                 onChange={(e) =>
-                  setRegisterData({ ...registerData, name: e.target.value })
+                  setRegisterData({
+                    ...registerData,
+                    name: e.target.value,
+                  })
                 }
               />
 
@@ -172,7 +201,10 @@ export default function Home() {
                 className="w-full rounded border p-2"
                 value={registerData.email}
                 onChange={(e) =>
-                  setRegisterData({ ...registerData, email: e.target.value })
+                  setRegisterData({
+                    ...registerData,
+                    email: e.target.value,
+                  })
                 }
               />
 
@@ -182,7 +214,10 @@ export default function Home() {
                 className="w-full rounded border p-2"
                 value={registerData.password}
                 onChange={(e) =>
-                  setRegisterData({ ...registerData, password: e.target.value })
+                  setRegisterData({
+                    ...registerData,
+                    password: e.target.value,
+                  })
                 }
               />
 
@@ -191,7 +226,10 @@ export default function Home() {
               </button>
             </form>
 
-            <form onSubmit={handleLogin} className="space-y-3 rounded-xl border p-4">
+            <form
+              onSubmit={handleLogin}
+              className="space-y-3 rounded-xl border p-4"
+            >
               <h2 className="text-xl font-semibold">Login</h2>
 
               <input
@@ -200,7 +238,10 @@ export default function Home() {
                 className="w-full rounded border p-2"
                 value={loginData.email}
                 onChange={(e) =>
-                  setLoginData({ ...loginData, email: e.target.value })
+                  setLoginData({
+                    ...loginData,
+                    email: e.target.value,
+                  })
                 }
               />
 
@@ -210,7 +251,10 @@ export default function Home() {
                 className="w-full rounded border p-2"
                 value={loginData.password}
                 onChange={(e) =>
-                  setLoginData({ ...loginData, password: e.target.value })
+                  setLoginData({
+                    ...loginData,
+                    password: e.target.value,
+                  })
                 }
               />
 
@@ -221,6 +265,13 @@ export default function Home() {
           </div>
         ) : (
           <div className="space-y-6">
+            <button
+              onClick={handleLogout}
+              className="mb-4 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+            >
+              Logout
+            </button>
+
             <form onSubmit={handleAddHabit} className="flex gap-3">
               <input
                 type="text"
@@ -239,7 +290,10 @@ export default function Home() {
             ) : (
               <ul className="space-y-4">
                 {habits.map((habit) => {
-                  const progress = Math.min((habit.streak / 66) * 100, 100);
+                  const progress = Math.min(
+                    (habit.streak / 66) * 100,
+                    100
+                  );
 
                   return (
                     <li
@@ -267,7 +321,8 @@ export default function Home() {
                       </div>
 
                       <p className="mt-2 text-sm text-slate-500">
-                        Racha: {habit.streak} día(s) - Progreso: {progress.toFixed(0)}%
+                        Racha: {habit.streak} día(s) - Progreso:{" "}
+                        {progress.toFixed(0)}%
                       </p>
                     </li>
                   );
